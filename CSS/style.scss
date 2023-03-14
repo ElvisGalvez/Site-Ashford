@@ -10,9 +10,8 @@
   body {
     font-size: 1.6rem;
     font-family: 'Castellar', serif;
-    width: 100%;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    overflow: hidden;
+  
     filter: drop-shadow(0 0 10px rgb(139, 63, 1));
   }
 
@@ -45,15 +44,16 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 500px; /* si vous voulez centrer verticalement les cartes sur toute la hauteur de l'écran */
-    width: 100%;
-    max-width: 1400px;
+    height: 500px; 
+    width: 90%;
   }
 
   .general-container{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
   }
   
   .card_container .card {
@@ -96,6 +96,7 @@
     height: 50px;
     display: flex;
     align-items: center;
+  justify-content: center;
   }
   
   @function random-range($min, $max) {
