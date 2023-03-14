@@ -1,0 +1,171 @@
+/* Base styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body {
+    font-size: 1.6rem;
+    font-family: 'Castellar', serif;
+    width: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+    filter: drop-shadow(0 0 10px rgb(139, 63, 1));
+  }
+
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* Header styles */
+  
+  header {
+
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header h1 {
+    padding-top: 100px;
+    font-size: 70px;
+    text-align: center;
+    color: #911c1c;
+  }
+  
+  
+  .card_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px; /* si vous voulez centrer verticalement les cartes sur toute la hauteur de l'écran */
+    width: 100%;
+    max-width: 1400px;
+  }
+
+  .general-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .card_container .card {
+    width: 30%;
+    max-height: 366.99px;
+    padding: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, #080505, #420c0c);
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    border-radius: 10px;
+  
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    }
+  
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #0666d3;
+      display: flex;
+    }
+  }
+  
+  .title-container{
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  
+  @function random-range($min, $max) {
+    $rand: random();
+    $random-range: $min + floor($rand * (($max - $min) + 1));
+    @return $random-range;
+  }
+  
+  .snow {
+    $total: 200;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+  
+    @for $i from 1 through $total {
+      $random-x: random(1000000) * 0.0001vw;
+      $random-offset: random-range(-100000, 100000) * 0.0001vw;
+      $random-x-end: $random-x + $random-offset;
+      $random-x-end-yoyo: calc(#{$random-x} + (#{$random-offset} / 2));
+      $random-yoyo-time: calc(random-range(30000, 80000) / 100000);
+      $random-yoyo-y: $random-yoyo-time * 100vh;
+      $random-scale: random(10000) * 0.0001;
+      $fall-duration: random-range(10, 30) * 1s;
+      $fall-delay: random(30) * -1s;
+  
+      &:nth-child(#{$i}) {
+        opacity: random(10000) * 0.0001;
+        transform: translate($random-x, -10px) scale($random-scale);
+        animation-name: fall-#{$i};
+        animation-duration: $fall-duration;
+        animation-delay: $fall-delay;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+  
+      @keyframes fall-#{$i} {
+        #{percentage($random-yoyo-time)} {
+          transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+        }
+  
+        to {
+          transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+        }
+      }
+    }
+  }
+
+.player-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, rgb(22, 4, 56), rgb(15, 7, 32));
+  background-size: cover;
+  background-position: center;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.upcoming-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-color: red;
+  color: rgb(216, 5, 5);
+  border: 2px solid rgb(247, 4, 4);
+  font-weight: 900;
+  font-size: 30px;
+}
